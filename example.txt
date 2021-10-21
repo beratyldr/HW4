@@ -1,7 +1,7 @@
 @startuml
 actor       Actor       as user
 participant Category    as c
-participant Product     as p
+participant User     as p
 participant User        as u
 participant Basket      as b
 participant Checkout    as ch
@@ -14,9 +14,9 @@ c -> user : created category 1
 user -> c : create a new Category with parent category 1
 c -> db : create category
 c -> user: created category 2
-user -> p : create product with related category 2
-p -> db: create product
-p -> user: created product 1
+user -> p : create User with related category 2
+p -> db: create User
+p -> user: created User 1
 user -> u: create user
 u -> db: create user 1
 u -> user: created user 1

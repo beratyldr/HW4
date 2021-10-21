@@ -1,6 +1,6 @@
-# Homework 4
+#  4
 
-You should implement an API which contains CategoryController, ProductController, UserController, BasketController, CheckoutController and OrderController. Database should be Postgresql. JPA code first approach should be followed.
+You should implement an API which contains CategoryController, UserController, UserController, BasketController, CheckoutController and OrderController. Database should be Postgresql. JPA code first approach should be followed.
 
 ## Category Controller
 You should use CRUD operations.  
