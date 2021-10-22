@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 public class BasketController {
 
     private final BasketService basketService;
-    @PostMapping("{productId}")
-    public String addToCart(@PathVariable int productId,@ModelAttribute Basket basket){
+    @PostMapping("{usertId}/user/{productId}")
+    public String addToCart(@PathVariable int usertId,@PathVariable int productId,@ModelAttribute Basket basket){
 
         //to save to cartItem table.
-        basketService.addToBasket(productId,basket);
+        basketService.addToBasket(usertId,productId,basket);
 
         return "products";
     }
