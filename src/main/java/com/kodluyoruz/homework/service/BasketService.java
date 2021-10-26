@@ -1,33 +1,42 @@
 package com.kodluyoruz.homework.service;
 
+import com.kodluyoruz.homework.model.dto.BasketDto;
+import com.kodluyoruz.homework.model.dto.ProductDto;
+import com.kodluyoruz.homework.model.dto.UserDto;
 import com.kodluyoruz.homework.model.entity.Basket;
-import com.kodluyoruz.homework.model.entity.Product;
-import com.kodluyoruz.homework.model.entity.User;
+import com.kodluyoruz.homework.model.request.BasketRequest;
 import com.kodluyoruz.homework.repository.BasketRepository;
-import com.kodluyoruz.homework.repository.ProductRepository;
-import com.kodluyoruz.homework.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.kodluyoruz.homework.model.mapper.BasketMapper.BASKET_MAPPER;
+import static com.kodluyoruz.homework.model.mapper.ProductMapper.PRODUCT_MAPPER;
+import static com.kodluyoruz.homework.model.mapper.UserMapper.USER_MAPPER;
 
 
 @Service
 @RequiredArgsConstructor
 public class BasketService {
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
     private final BasketRepository basketRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public void addToBasket(int userId,int productId,Basket basket){
+    public BasketDto addToBasket(BasketRequest request){
 
-        Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("not found"));
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("not found"));
-        basket.setUser(user);
-        basket.setProduct(product);
-        basketRepository.save(basket);
+        Basket basket = BASKET_MAPPER.createBasket(request);
+        return BASKET_MAPPER.toBasketDto(basketRepository.save(basket));
 
     }
+
+    /*public List<ProductDto> getBasket(int userId) {
+        List<Basket> baskets = basketRepository.findAllByUserId(userId);
+        List<Product> products=new ArrayList<>();
+        for (Basket item:baskets
+             ) {
+            products.add(item.getProduct());
+        }
+        return PRODUCT_MAPPER.toProductDtoList(products);
+
+    }*/
 }

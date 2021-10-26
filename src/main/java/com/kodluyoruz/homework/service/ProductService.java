@@ -8,6 +8,8 @@ import com.kodluyoruz.homework.model.request.CreateUpdateProductRequest;
 import com.kodluyoruz.homework.repository.CategoryRepository;
 import com.kodluyoruz.homework.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

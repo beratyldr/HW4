@@ -1,9 +1,14 @@
 package com.kodluyoruz.homework.controller;
 
+import com.kodluyoruz.homework.model.dto.BasketDto;
 import com.kodluyoruz.homework.model.entity.Basket;
+import com.kodluyoruz.homework.model.request.BasketRequest;
 import com.kodluyoruz.homework.service.BasketService;
 import lombok.RequiredArgsConstructor;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("basket")
@@ -11,12 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class BasketController {
 
     private final BasketService basketService;
-    @PostMapping("{usertId}/user/{productId}")
-    public String addToCart(@PathVariable int usertId,@PathVariable int productId,@ModelAttribute Basket basket){
-
+    @PostMapping("{userId}/user/{productId}")
+    public BasketDto addToCart(@RequestBody BasketRequest request){
         //to save to cartItem table.
-        basketService.addToBasket(usertId,productId,basket);
-
-        return "products";
+           return  basketService.addToBasket(request);
     }
+
 }
