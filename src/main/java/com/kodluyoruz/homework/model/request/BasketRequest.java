@@ -12,10 +12,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BasketRequest {
-    @NotNull
-    private Integer userId;
-    @NotNull
-    private Integer productId;
 
+    private Integer userId;
+    private Integer productId;
     private Integer quantity;
 }
